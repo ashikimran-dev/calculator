@@ -28,7 +28,7 @@ static constexpr uint32_t BASEX = 0x80000000; // Internal radix used in calculat
                                               // this to 2^32 after solving scaling problems with
                                               // overflow detection esp. in mul
 
-typedef uint32_t MANTTYPE;
+typedef uint32_t MANTTYPE; // Essentially an  int, specifcally MANTTYPE is an alias for uint32_t
 typedef uint64_t TWO_MANTTYPE;
 
 enum eNUMOBJ_FMT
@@ -42,7 +42,7 @@ enum eNUMOBJ_FMT
 enum eANGLE_TYPE
 {
     ANGLE_DEG, // Calculate trig using 360 degrees per revolution
-    ANGLE_RAD, // Calculate trig using 2 pi  radians per revolution
+    ANGLE_RAD, // Calculate trig using 2 pi radians per revolution
     ANGLE_GRAD // Calculate trig using 400 gradients per revolution
 
 };

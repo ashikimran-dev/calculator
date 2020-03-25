@@ -130,7 +130,13 @@ void* zmalloc(size_t a)
 
 void _dupnum(_In_ PNUMBER dest, _In_ const NUMBER* const src)
 {
-    memcpy(dest, src, (int)(sizeof(NUMBER) + ((src)->cdigit) * (sizeof(MANTTYPE))));
+    auto numDigits = ((src)->cdigit);
+    auto szMantissa = (sizeof(MANTTYPE)); 
+    auto szNumber = sizeof(NUMBER);      // General memory of number class
+
+    // Originally, the number class has mantissa array empty. Depending on the number of digits stored in the
+    // array, we have allocate memory accordingly. Hence, total memory = Number class size + Mantissa diigts-array size.
+    memcpy(dest, src, (int)(szNumber + numDigits * szMantissa));
 }
 
 //-----------------------------------------------------------------------------
