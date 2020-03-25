@@ -84,6 +84,7 @@ void CCalcEngine::DisplayNum(void)
     //  something important has changed since the last time DisplayNum was
     //  called.
     //
+    // Starting point here
     if (m_bRecord || gldPrevious.value != m_currentVal || gldPrevious.precision != m_precision || gldPrevious.radix != m_radix || gldPrevious.nFE != (int)m_nFE
         || gldPrevious.bUseSep != true || gldPrevious.numwidth != m_numwidth || gldPrevious.fIntMath != m_fIntegerMode || gldPrevious.bRecord != m_bRecord)
     {
