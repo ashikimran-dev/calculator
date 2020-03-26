@@ -164,14 +164,16 @@ namespace CalculationManager
         if (!m_standardCalculatorEngine)
         {
             m_standardCalculatorEngine =
-                make_unique<CCalcEngine>(false /* Respect Order of Operations */, false /* Set to Integer Mode */, m_resourceProvider, this, m_pStdHistory);
+                make_unique<CCalcEngine>
+                (false /* Respect Order of Operations */, false /* Set to Integer Mode */, m_resourceProvider, this, m_pStdHistory);
         }
 
-        m_currentCalculatorEngine = m_standardCalculatorEngine.get();
+        m_currentCalculatorEngine = m_standardCalculatorEngine.get(); // Access the raw ptr inside the unique ptr class
         m_currentCalculatorEngine->ProcessCommand(IDC_DEC);
         m_currentCalculatorEngine->ProcessCommand(IDC_CLEAR);
         m_currentCalculatorEngine->ChangePrecision(static_cast<int>(CalculatorPrecision::StandardModePrecision));
         UpdateMaxIntDigits();
+
         m_pHistory = m_pStdHistory.get();
     }
 

@@ -53,7 +53,8 @@ typedef enum eANGLE_TYPE ANGLE_TYPE;
 //-----------------------------------------------------------------------------
 //
 //  NUMBER type is a representation of a generic sized generic radix number
-//
+//  Depending on our application , sometimes something as straightforward as a number
+//  required a generic structured way of representation.
 //-----------------------------------------------------------------------------
 
 #pragma warning(push)

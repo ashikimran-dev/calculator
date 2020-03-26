@@ -47,9 +47,13 @@ namespace CalculationManager
     private:
         ICalcDisplay* const m_displayCallback;
         CCalcEngine* m_currentCalculatorEngine;
+
+        // The three modes are set in 3 different variables, but of same type
+        // Simpler than inheritance in this case
         std::unique_ptr<CCalcEngine> m_scientificCalculatorEngine;
         std::unique_ptr<CCalcEngine> m_standardCalculatorEngine;
         std::unique_ptr<CCalcEngine> m_programmerCalculatorEngine;
+
         IResourceProvider* const m_resourceProvider;
         bool m_inHistoryItemLoadMode;
 

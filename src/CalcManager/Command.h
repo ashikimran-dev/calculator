@@ -48,6 +48,9 @@ namespace CurrencyConversionManager
     };
 }
 
+
+// Contains the long list of commands for each button displayed in the calculator
+// They have some numbering conventions to avoid conflicts and all that
 namespace CalculationManager
 {
     enum class CommandType

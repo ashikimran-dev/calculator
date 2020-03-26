@@ -132,6 +132,9 @@ void* zmalloc(size_t a)
 
 void _dupnum(_In_ PNUMBER dest, _In_ const NUMBER* const src)
 {
+    // Double the result
+    
+
     auto numDigits = ((src)->cdigit);
     auto szMantissa = (sizeof(MANTTYPE)); 
     auto szNumber = sizeof(NUMBER);      // General memory of number class

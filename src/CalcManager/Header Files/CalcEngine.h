@@ -54,12 +54,15 @@ namespace CalculatorEngineTests
 class CCalcEngine
 {
 public:
+
+    // Contains the operations depending which mode we are in
     CCalcEngine(
         bool fPrecedence,
         bool fIntegerMode,
         CalculationManager::IResourceProvider* const pResourceProvider,
         __in_opt ICalcDisplay* pCalcDisplay,
         __in_opt std::shared_ptr<IHistoryDisplay> pHistoryDisplay);
+
     void ProcessCommand(OpCode wID);
     void DisplayError(uint32_t nError);
     std::unique_ptr<CalcEngine::Rational> PersistedMemObject();
