@@ -371,24 +371,44 @@ PNUMBER nRadixxtonum(_In_ PNUMBER a, uint32_t radix, int32_t precision)
 
 PNUMBER numtonRadixx(_In_ PNUMBER a, uint32_t radix)
 {
+    // pnumret is eventually going to hold the result. Here,we init it first with a zero ie. "zero number"
     PNUMBER pnumret = i32tonum(0, BASEX); // pnumret is the number in internal form.
+
+    // We convert radix to number format. Recall number is the "general number format" used in our calculator
+    // Why do we want to convert radix to number format with BASEX as base
     PNUMBER num_radix = i32tonum(radix, BASEX);
+
+
     MANTTYPE* ptrdigit = a->mant; // pointer to digit being worked on.
 
-    // Digits are in reverse order, back over them LSD first.
+    // Digits are in reverse order, back over them LSD first ie. go the (n-1)th place in the mantissa array.
+    // N element array last element is N-1
     ptrdigit += a->cdigit - 1;
 
     PNUMBER thisdigit = nullptr; // thisdigit holds the current digit of a
                                  // being summed into result.
+
     int32_t idigit;              // idigit is the iterate of digits in a.
+
+    // Looks like this is the place where we loop through each digit and try to add it to result.
+    // Digit by digit addition like we learned in basic artihmetic
     for (idigit = 0; idigit < a->cdigit; idigit++)
     {
+        // This is still not clear...this mulnumx function. Both pnumret and num_radix are of NUMBER data type
         mulnumx(&pnumret, num_radix);
+
         // WARNING:
-        // This should just smack in each digit into a 'special' thisdigit.
+        // This should just smack in each digit into a 'special' or 'unique' thisdigit.
         // and not do the overhead of recreating the number type each time.
+        // We take a single digit in a number and convert it to the NUMBER data type.
+        // thisDigit is created only once. It's a contantly updating temp variable in a loop.
         thisdigit = i32tonum(*ptrdigit--, BASEX);
+
+        // Add this digit into the existing pnumret. Mantissa may be needed to adjust it accordingly.
         addnum(&pnumret, thisdigit, BASEX);
+
+        // Free thisDigit memory resource. Since it's not created everytime, maybe we can
+        // free it after the for loop??
         destroynum(thisdigit);
     }
 

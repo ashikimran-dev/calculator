@@ -43,6 +43,7 @@ using namespace std;
 
 void _addnum(PNUMBER* pa, PNUMBER b, uint32_t radix);
 
+// This function may be called initially on start-up due to unit tests running
 void addnum(_Inout_ PNUMBER* pa, _In_ PNUMBER b, uint32_t radix)
 
 {
@@ -62,6 +63,10 @@ void addnum(_Inout_ PNUMBER* pa, _In_ PNUMBER b, uint32_t radix)
 void _addnum(PNUMBER* pa, PNUMBER b, uint32_t radix)
 
 {
+    // LT code
+    //NUMBER g;
+        
+    
     PNUMBER c = nullptr; // c will contain the result.
     PNUMBER a = nullptr; // a is the dereferenced number pointer from *pa
     MANTTYPE* pcha;      // pcha is a pointer to the mantissa of a.
@@ -145,7 +150,7 @@ void _addnum(PNUMBER* pa, PNUMBER b, uint32_t radix)
         else
         {
             // In this particular case an overflow or underflow has occurred
-            // and all the digits need to be complemented, at one time an
+            // and all the digits need to be complemented. At one time, an
             // attempt to handle this above was made, it turned out to be much
             // slower on average.
             c->sign = -1;
